@@ -1,0 +1,31 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /notification
+spring:
+  application:
+    name: notification-service
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:27017/notification-service?authSource=admin
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hoangthil241@gmail.com
+    password: rlbu ondx agdl snke
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  cloud:
+    stream:
+      bindings:
+        notificationDelivery-in-0:
+          destination: notification-delivery
+      kafka:
+        binder:
+          brokers: localhost:9094
+
+

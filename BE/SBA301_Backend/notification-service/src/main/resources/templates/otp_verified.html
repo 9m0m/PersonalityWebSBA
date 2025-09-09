@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Xác thực: ' + ${PURPOSE}">Xác thực</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
+    <tr>
+        <td style="background-color: #4CAF50; padding: 20px; text-align: center; color: #ffffff; font-size: 24px;"
+            th:text="'Xác Thực: ' + ${PURPOSE}">
+            Xác Thực: PURPOSE
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 30px; text-align: center;">
+            <p style="font-size: 18px; margin-bottom: 20px;"
+               th:text="'Đây là mã OTP dùng cho mục đính: ' + ${PURPOSE}">
+                Đây là mã OTP dùng cho mục đích PURPOSE
+            </p>
+            <p style="font-size: 32px; font-weight: bold; margin: 10px 0; color: #4CAF50;"
+               th:text="${OTP}">
+                OTP
+            </p>
+            <p style="font-size: 14px; color: #555;">
+                Mã này sẽ hết hạn sau 3 phút;
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #f4f4f4; padding: 10px; text-align: center; font-size: 12px; color: #888;">
+            Nếu bạn không yêu cầu OTP này, vui lòng bỏ qua email này.
+        </td>
+    </tr>
+</table>
+</body>
+</html>

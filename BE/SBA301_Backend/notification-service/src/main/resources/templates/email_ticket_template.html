@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Vé Seminar của bạn</title>
+</head>
+<body>
+<h2>Xin chào <span th:text="${userName}">User Name</span>,</h2>
+<p>Cảm ơn bạn đã đặt vé cho sự kiện:</p>
+<p><strong th:text="${eventName}">Event Name</strong></p>
+
+<p>Mã vé của bạn: <strong th:text="${ticketCode}">ABC123</strong></p>
+
+<p>Thời gian: <span th:text="${eventDate}">01/07/2025</span></p>
+<p>Địa điểm: <span th:text="${eventLocation}">Hội trường ABC</span></p>
+
+<p>Vé QR Code:</p>
+<img th:src="${qrCodeBase64}" alt="QR Code" />
+
+<p>Hẹn gặp bạn tại sự kiện!</p>
+</body>
+</html>

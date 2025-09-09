@@ -1,0 +1,208 @@
+/* Main Container */
+.admin-tab {
+  width: 250px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.admin-tab.collapsed {
+  width: 70px;
+}
+
+.tab-header {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #1e293b;
+}
+
+.admin-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.admin-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-button:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.tab-nav {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  color: #64748b;
+  position: relative;
+  text-align: left;
+}
+
+.tab-item:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.tab-item.active {
+  background: #4a69bd;
+  color: white;
+}
+
+.tab-item.active .notification-badge {
+  background: white;
+  color: #4a69bd;
+}
+
+.tab-icon {
+  font-size: 1.2rem;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.tab-item .notification-badge {
+  background: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 10px;
+  position: relative;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+/* Scrollbar Styles */
+.tab-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.tab-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tab-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.tab-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Tooltip for collapsed state */
+.admin-tab.collapsed .tab-item {
+  padding: 0.75rem;
+  justify-content: center;
+}
+
+.admin-tab.collapsed .tab-icon {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .admin-tab {
+    width: 70px;
+  }
+
+  .admin-tab.expanded {
+    width: 250px;
+  }
+
+  .admin-title,
+  .tab-label {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .admin-tab.expanded .admin-title,
+  .admin-tab.expanded .tab-label {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .tab-item .notification-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-tab {
+    transform: translateX(-100%);
+  }
+
+  .admin-tab.expanded {
+    transform: translateX(0);
+    width: 250px;
+  }
+
+  .admin-tab.expanded .admin-title,
+  .admin-tab.expanded .tab-label {
+    opacity: 1;
+    visibility: visible;
+  }
+}

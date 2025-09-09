@@ -1,0 +1,40 @@
+name: Build Action
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+    inputs:
+      service:
+        description: 'Choose an service to build'
+        required: true
+        type: choice
+        options:
+          - auth-service
+          - eureka-server
+          - gateway-service
+          - quiz-service
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Dockerhub login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_GKHANH_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_GKHANH_PWD }}
+
+      - name: Extract Git commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Build and push image
+        run: |
+          cd ${{ github.event.inputs.service }}
+          IMAGE=${{ secrets.DOCKER_HUB_GKHANH_USERNAME }}/sba_micro_${{ github.event.inputs.service }}
+          docker build -t $IMAGE:$COMMIT_HASH .
+          docker push $IMAGE:$COMMIT_HASH

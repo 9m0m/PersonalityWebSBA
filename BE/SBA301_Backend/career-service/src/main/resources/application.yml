@@ -1,0 +1,18 @@
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://eureka:123456@trangiangkhanh.online:8761/eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:123456@localhost:8761/eureka
+spring:
+  application:
+    name: career-service
+  data:
+    mongodb:
+      uri: mongodb://mongo:123456@trangiangkhanh.online:27017/career_service?authSource=admin&authMechanism=SCRAM-SHA-1
+      database: career_service
+
+server:
+  port: 8811

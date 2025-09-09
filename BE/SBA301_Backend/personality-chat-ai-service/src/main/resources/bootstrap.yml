@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: personality-chat-ai-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+    service-registry:
+      auto-registration:
+        enabled: true
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka:123456@trangiangkhanh.online:8761/eureka
+  instance:
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${random.value}
+
+server:
+  port: 8810

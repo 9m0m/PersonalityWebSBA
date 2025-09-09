@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: order-service
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: 'true'
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    compatibility-verifier:
+      enabled: 'false'
+    discovery:
+      enabled: 'true'
+  datasource:
+    password: '123456'
+    driver-class-name: org.postgresql.Driver
+    username: devsba301
+    url: jdbc:postgresql://trangiangkhanh.online:5432/sba_order_db
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:123456@localhost:8761/eureka
+server:
+  port: '8808'

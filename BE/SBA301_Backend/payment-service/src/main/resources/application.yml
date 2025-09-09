@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: payment-service
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    compatibility-verifier:
+      enabled: 'false'
+    discovery:
+      enabled: 'true'
+  datasource:
+    password: '123456'
+    driver-class-name: org.postgresql.Driver
+    username: devsba301
+    url: jdbc:postgresql://trangiangkhanh.online:5432/sba_payment_db
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:123456@localhost:8761/eureka
+server:
+  port: '8086'
+
+#SECRET
+PAYOS_API_KEY: 19bb95dc-ec34-4f32-bd25-a4f510d69755
+PAYOS_CHECKSUM_KEY: 0ef508dda6849f56272fcd228856522759d9c39cd1f5d37141eb36f71279feed
+PAYOS_CLIENT_ID: 6c38101f-5a2b-4a63-887e-a52eb824345c
+SUCCESS_URL: http://localhost:5173/order
+FAILURE_URL: http://localhost:5173/
+JOB_TIMEOUT: 60000 # 60 seconds

@@ -1,0 +1,126 @@
+server:
+  port: 8080
+  address: 0.0.0.0
+app:
+  api-prefix: /api/v1
+  service-prefix:
+    auth: /authenticate
+    payment: /payment
+    premium: /premium
+    quiz: /quiz
+    university: /university
+    order: /order-service
+    persona: /persona
+    chat: /chatai
+    career: /career
+    event: /event
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        # 8801
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.auth}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.auth}/(?<segment>.*), /${segment}
+
+        # 8802
+        - id: notification_service
+          uri: http://localhost:8802
+          predicates:
+            - Path=${app.api-prefix}/notification/**
+          filters:
+            - StripPrefix=2
+        #8803
+        - id: quiz-service
+          uri: lb://quiz-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.quiz}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.quiz}/(?<segment>.*), /${segment}
+
+        # 8804
+        - id: persona_service
+          uri: lb://persona_service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.persona}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.persona}/(?<segment>.*), /${segment}
+
+        #8805
+        - id: university-service
+          uri: lb://university-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.university}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.university}/(?<segment>.*), /${segment}
+
+        #8806
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.payment}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.payment}/(?<segment>.*), /${segment}
+
+        #8807
+        - id: premium-service
+          uri: lb://premium-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.premium}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.premium}/(?<segment>.*), /${segment}
+
+        #8808
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.order}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.order}/(?<segment>.*), /${segment}
+
+        #8809
+        - id: event-service
+          uri: lb://event-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.event}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.event}/(?<segment>.*), /${segment}
+
+        #8810
+        - id: personality-chat-ai-service
+          uri: lb://personality-chat-ai-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.chat}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.chat}/(?<segment>.*), /${segment}
+
+        #8811
+        - id: career-service
+          uri: lb://career-service
+          predicates:
+            - Path=${app.api-prefix}${app.service-prefix.career}/**
+          filters:
+            - RewritePath=${app.api-prefix}${app.service-prefix.career}/(?<segment>.*), /${segment}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:123456@localhost:8761/eureka
+
+#
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: false   # Disable automatic route creation
+#
+## custom obfuscate
+#app:
+#  services:
+#    auth-service: "/c8746f30-d123-4d19-9e80-3a00fa3a276b"
+#    quiz-service: "/91349aab-b2c4-44c8-a319-0d76b4df23d9"

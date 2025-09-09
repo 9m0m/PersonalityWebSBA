@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: location-service
+
+server:
+  port: '8805'
+
+springdoc:
+  api-docs:
+    path: /api-docs
